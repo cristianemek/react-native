@@ -1,15 +1,25 @@
-import { Slot } from "expo-router";
 import React from "react";
-import { Text, View } from "react-native";
+import { Platform, View } from "react-native";
+
+import * as NavigationBar from "expo-navigation-bar";
+import { Slot } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+
+import { Colors } from "@/constants/theme";
+import { globalStyles } from "@/styles/global-styles";
+
+const isAndroid = Platform.OS === "android";
+
+if (isAndroid) {
+  NavigationBar.setBackgroundColorAsync("black");
+}
 
 const RootLayout = () => {
   return (
-    <View>
-      <Text>Header</Text>
-
+    <View style={globalStyles.background}>
       <Slot />
 
-      <Text>Footer</Text>
+      <StatusBar style="light" backgroundColor={Colors.background} />
     </View>
   );
 };
